@@ -1,7 +1,13 @@
 # Recommender-Systems
 
 
-# Preprocessing Yahoo Data from the RecWalk Repo
+### Preprocessing Yahoo Data from the RecWalk Repo
+
+> bash
+```bash
+wget https://github.com/nikolakopoulos/RecWalk/raw/master/yahoo.mat
+```
+
 > Julia
 ```julia
 using SparseArrays, DataFrames, CSV, MAT
