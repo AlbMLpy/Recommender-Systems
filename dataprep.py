@@ -18,9 +18,9 @@ def split_holdout(data, userid='userid', feedback=None, sample_max_rated=False, 
     return observed, holdout
 
 
-def sample_unseen_items(user_group, item_pool, itemid, n, random_state):
+def sample_unseen_items(item_group, item_pool, n, random_state):
     'Helper function to run on pandas dataframe grouper'
-    seen_items = user_group[itemid].values
+    seen_items = item_group.values
     candidates = np.setdiff1d(item_pool, seen_items, assume_unique=True)
     return random_state.choice(candidates, n, replace=False)
 
@@ -30,6 +30,6 @@ def sample_unseen_interactions(data, item_pool, userid='userid', itemid='itemid'
     random_state = np.random if seed is None else np.random.RandomState(seed)
     return (
         data
-        .groupby(userid, sort=False)
-        .apply(sample_unseen_items, item_pool, itemid, n_random, random_state)
+        .groupby(userid, sort=False)[itemid]
+        .apply(sample_unseen_items, item_pool, n_random, random_state)
     )
