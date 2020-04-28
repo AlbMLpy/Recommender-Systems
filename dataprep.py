@@ -2,7 +2,7 @@ import numpy as np
 
 
 def split_holdout(data, userid='userid', feedback=None, sample_max_rated=False, random_state=None):
-    'Randomized sampling of a highly rated item per every user in data'
+    'Sample 1 item per every user according to the rule sample_max_rated.'
     idx_grouper = (
         data
         .sample(frac=1, random_state=random_state) # randomly permute data
